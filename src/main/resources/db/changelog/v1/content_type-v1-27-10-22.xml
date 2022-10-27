@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="content_type-v1-27-10-22--001" author="Valet-Byte">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="content_type"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="content_type">
+            <column name="id"
+                    type="bigint"
+                    autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="text">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="load_data-content_type-v1-27-10-22--001" author="Valet-Byte">
+        <loadUpdateData tableName="content_type"
+                  encoding="UTF-8"
+                  file="db/changelog/v1/data/data-content_type-v1-27-10-22.csv"
+                  separator=";" primaryKey="id"/>
+    </changeSet>
+
+</databaseChangeLog>
