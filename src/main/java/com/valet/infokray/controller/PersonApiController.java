@@ -16,17 +16,16 @@ public class PersonApiController {
     private final PersonService personService;
 
     @PostMapping("/registration")
-    public ResponseEntity<?> registration (@RequestBody Person person){
+    public ResponseEntity<?> registration(@RequestBody Person person) {
         try {
             return ResponseEntity.ok(personService.save(person));
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
     @GetMapping("/login")
-    public PersonDTO login(@AuthenticationPrincipal Person person){
+    public PersonDTO login(@AuthenticationPrincipal Person person) {
         return person.toDTO();
     }
-
 }

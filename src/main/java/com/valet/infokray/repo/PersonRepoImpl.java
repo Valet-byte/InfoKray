@@ -1,8 +1,9 @@
 package com.valet.infokray.repo;
 
 import com.valet.infokray.model.Person;
+import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -10,16 +11,12 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Objects;
-
 @Repository
 @RequiredArgsConstructor
 public class PersonRepoImpl implements PersonRepo {
 
     private final NamedParameterJdbcTemplate jdbc;
     private final RowMapper<Person> mapper;
-
 
     @Override
     public Person findById(Long id) {
@@ -51,8 +48,10 @@ public class PersonRepoImpl implements PersonRepo {
 
         KeyHolder holder = new GeneratedKeyHolder();
 
-        jdbc.update("INSERT INTO person (name, password, email) VALUES " +
-                "(:name, :password, :email)", source, holder);
+        jdbc.update(
+                "INSERT INTO person (name, password, email) VALUES " + "(:name, :password, :email)",
+                source,
+                holder);
 
         person.setId((Long) Objects.requireNonNull(holder.getKeys()).get("id"));
         return person;
@@ -63,9 +62,11 @@ public class PersonRepoImpl implements PersonRepo {
         try {
             final MapSqlParameterSource source = new MapSqlParameterSource();
             source.addValue("id", id);
-            Integer count = jdbc.queryForObject("SELECT count(*) FROM person WHERE id = :id", source, Integer.class);
+            Integer count =
+                    jdbc.queryForObject(
+                            "SELECT count(*) FROM person WHERE id = :id", source, Integer.class);
             return count > 0;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -76,9 +77,13 @@ public class PersonRepoImpl implements PersonRepo {
         try {
             final MapSqlParameterSource source = new MapSqlParameterSource();
             source.addValue("email", email);
-            Integer count = jdbc.queryForObject("SELECT count(*) FROM person WHERE email = :email", source, Integer.class);
+            Integer count =
+                    jdbc.queryForObject(
+                            "SELECT count(*) FROM person WHERE email = :email",
+                            source,
+                            Integer.class);
             return count > 0;
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

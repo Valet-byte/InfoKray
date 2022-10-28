@@ -5,10 +5,9 @@ import com.valet.infokray.model.DTO.PersonDTO;
 import com.valet.infokray.model.Person;
 import com.valet.infokray.repo.PersonRepo;
 import com.valet.infokray.service.encoding.EncodingService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

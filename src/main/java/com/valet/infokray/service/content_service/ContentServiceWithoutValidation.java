@@ -4,12 +4,11 @@ import com.valet.infokray.config.annotation.WithoutValidation;
 import com.valet.infokray.model.Content;
 import com.valet.infokray.model.Person;
 import com.valet.infokray.repo.ContentRepo;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @WithoutValidation

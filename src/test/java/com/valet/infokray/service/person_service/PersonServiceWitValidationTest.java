@@ -1,39 +1,31 @@
 package com.valet.infokray.service.person_service;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class PersonServiceWitValidationTest {
 
-    @Autowired
-    PersonServiceWitValidation personService;
+    @Autowired PersonServiceWitValidation personService;
 
-    @MockBean
-    PersonServiceWithoutValidation personServiceWithoutValidation;
+    @MockBean PersonServiceWithoutValidation personServiceWithoutValidation;
 
     @Test
-    void findById() {
-    }
+    void findById() {}
 
     @Test
-    void findByName() {
-    }
+    void findByName() {}
 
     @Test
-    void save() {
-    }
+    void save() {}
 
     @Test
-    void existPerson() {
-    }
+    void existPerson() {}
 
     @Test
-    void testExistPerson() {
-    }
+    void testExistPerson() {}
 }

@@ -9,5 +9,4 @@ public class InfoKrayApplication {
     public static void main(String[] args) {
         SpringApplication.run(InfoKrayApplication.class, args);
     }
-
 }
