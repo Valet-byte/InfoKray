@@ -13,13 +13,24 @@ import java.util.List;
 public class ContentMapper implements RowMapper<Content> {
     @Override
     public Content mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return Content.builder()
-                .id(rs.getLong("id"))
-                .name(rs.getString("name"))
-                .body(rs.getString("body"))
-                .creatorId(rs.getLong("creator_id"))
-                .images(List.of((String[]) (rs.getArray("images").getArray())))
-                .type(ContentType.getContentTypeById(rs.getLong("type")))
-                .build();
+        try {
+            return Content.builder()
+                    .id(rs.getLong("id"))
+                    .name(rs.getString("name"))
+                    .body(rs.getString("body"))
+                    .creatorId(rs.getLong("creator_id"))
+                    .images(List.of((String[]) (rs.getArray("images").getArray())))
+                    .type(ContentType.getContentTypeById(rs.getLong("type")))
+                    .build();
+        } catch (ClassCastException ignore){
+            return Content.builder()
+                    .id(rs.getLong("id"))
+                    .name(rs.getString("name"))
+                    .body(rs.getString("body"))
+                    .creatorId(rs.getLong("creator_id"))
+                    .type(ContentType.getContentTypeById(rs.getLong("type")))
+                    .build();
+        }
+
     }
 }

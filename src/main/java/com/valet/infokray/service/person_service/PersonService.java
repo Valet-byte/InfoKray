@@ -9,7 +9,6 @@ public interface PersonService {
     PersonDTO findById(Long id);
     List<PersonDTO> findByName(String name) throws IllegalArgumentException;
     Person save(Person person) throws IllegalArgumentException;
-
     boolean existPerson(Long id);
     boolean existPerson(String email);
 }

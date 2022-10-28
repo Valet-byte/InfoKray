@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="content-v1-27-10-22--001" author="Valet-Byte">
+
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="content"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="content">
+            <column name="id"
+                    type="bigint"
+                    autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="body" type="text"/>
+
+            <column name="images" type="bigint array"/>
+
+            <column name="type" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="content-v1-27-10-22--002" author="Valet-Byte">
+        <addColumn tableName="content">
+            <column name="creator_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="content-v1-27-10-22--003" author="Valet-byte">
+        <dropColumn tableName="content" columnName="images"/>
+        <addColumn tableName="content">
+            <column name="images" type="VARCHAR(50) array">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

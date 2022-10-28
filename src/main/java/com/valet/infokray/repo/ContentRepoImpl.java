@@ -48,6 +48,12 @@ public class ContentRepoImpl implements ContentRepo {
                 "body ILIKE '%" + text + "%' LIMIT :limit OFFSET :offset", source, rowMapper);
     }
 
+    @Override
+    public boolean deleteAll() {
+        final MapSqlParameterSource source = new MapSqlParameterSource();
+        return template.update("TRUNCATE TABLE content", source) > 0;
+    }
+
     private java.sql.Array createSqlArray(List<String> list){
         java.sql.Array intArray = null;
         try {

@@ -20,12 +20,15 @@ public class PersonServiceWitValidation implements PersonService {
 
     @Override
     public PersonDTO findById(Long id) {
-        return personService.findById(id);
+        if (id != null && id > 0){
+            return personService.findById(id);
+        } else throw new IllegalArgumentException("id not must be less 0!");
+
     }
 
     @Override
     public List<PersonDTO> findByName(String name) throws IllegalArgumentException {
-        if (name.length() > 4 && name.length() < 50){
+        if (name != null && name.length() > 4 && name.length() < 50 ){
             if (name.split(" ").length <= 4){
                 return personService.findByName(name);
             }else throw new IllegalArgumentException("name must contain up to 4 words!");
@@ -50,12 +53,16 @@ public class PersonServiceWitValidation implements PersonService {
 
     @Override
     public boolean existPerson(Long id) {
-        return personService.existPerson(id);
+        if (id != null && id > 0){
+            return personService.existPerson(id);
+        } else throw new IllegalArgumentException("id not must be less 0!");
     }
 
     @Override
     public boolean existPerson(String email) {
-        return personService.existPerson(email);
+        if (EmailValidator.validate(email)){
+            return personService.existPerson(email);
+        } else throw new IllegalArgumentException("Not valid email !");
     }
 
     private static class EmailValidator{

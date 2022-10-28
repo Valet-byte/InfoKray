@@ -8,4 +8,5 @@ import java.util.List;
 public interface ContentRepo {
     Content saveContent(Content content);
     List<Content> search(String text, Pageable pageable);
+    boolean deleteAll();
 }

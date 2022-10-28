@@ -83,4 +83,10 @@ public class PersonRepoImpl implements PersonRepo {
             return false;
         }
     }
+
+    @Override
+    public boolean deleteAll() {
+        final MapSqlParameterSource source = new MapSqlParameterSource();
+        return jdbc.update("TRUNCATE TABLE person", source) > 0;
+    }
 }
