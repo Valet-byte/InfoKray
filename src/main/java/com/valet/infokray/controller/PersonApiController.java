@@ -28,4 +28,13 @@ public class PersonApiController {
     public PersonDTO login(@AuthenticationPrincipal Person person) {
         return person.toDTO();
     }
+
+    @GetMapping("/getPersonById")
+    public ResponseEntity<?> getPersonById(@RequestParam Long id) {
+        try {
+            return ResponseEntity.ok(personService.findById(id));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

@@ -28,8 +28,8 @@
 
 в качестве имени пользователя исользуется email
 Отправляем в headers: 
-```json
-Authorization: Basic cnN1bWFrb3YyMEBnbWFpbC5jb206MTExMTEx
+```text
+Authorization : Basic cnN1bWFrb3YyMEBnbWFpbC5jb206MTExMTEx
 ```
 Возвращает:
 ```json
@@ -143,8 +143,6 @@ http://my-host/api/getImage?fileName=test.jpg
 
 Файлы: files.
 
-![img.png](img_1.png)
-
 Json контента: content
 
 Получаем:
@@ -159,5 +157,17 @@ Json контента: content
   ],
   "type": "EVENT",
   "creatorId": 5
+}
+```
+
+/api/getPersonById для получения краткой информации о пользователе. Требуется авторизация.
+
+Отправляем: в query параметр id
+
+Получаем: 
+```json
+{
+	"id": 1,
+	"name": "Valet-byte"
 }
 ```
